@@ -15,6 +15,11 @@ struct ContentView: View {
     
     let tipPercentages = [10,15,20,25,30,0]
     
+    var amountPerPerson: Double {
+        
+        return 0
+    }
+    
     var body: some View {
         NavigationView {
             Form {
@@ -26,6 +31,14 @@ struct ContentView: View {
                             Text("\($0) people")
                         }
                     }
+                }
+                Section(header: Text("Tip Percentage")) {
+                    Picker("Tip Percentage", selection: $tipPercentage) {
+                        ForEach(0 ..< tipPercentages.count){number in
+                            Text("\(self.tipPercentages[number])%")
+                        }
+                    }
+                    .pickerStyle(SegmentedPickerStyle())
                 }
                 Section {
                     Text("$\(bill)")
